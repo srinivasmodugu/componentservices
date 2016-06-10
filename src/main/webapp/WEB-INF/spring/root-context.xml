@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:jee="http://www.springframework.org/schema/jee"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/jee 
+                    http://www.springframework.org/schema/jee/spring-jee-3.2.xsd">
+	
+	<!-- Root Context: defines shared resources visible to all other web components -->
+	
+	<bean id="service" class="com.dci.ComponentInfo.services.GetCompInfoDaoTest">
+		<property name="compTypeAll" value="footnote,bridgehead,para,note,table,graphic,entity" />
+		<property name="clientId" value="25" />
+	</bean>
+	
+	<bean id="docbookservice" class="com.dci.ComponentInfo.services.GetDocBookDAOimp">
+	</bean>
+
+	<bean id="variableservice" class="com.dci.ComponentInfo.services.GetVariableDAOimp">
+	</bean>
+	
+	<bean id="savecompservice" class="com.dci.ComponentInfo.services.SaveComponentDAOimp">
+		<property name="clientId" value="25" />
+	</bean>
+	
+	<bean id="tableattributeservice" class="com.dci.ComponentInfo.services.GetTableAttributeDAOimp">
+	</bean>
+						<!-- Service with jndi adapter -->
+<!-- 	<bean id="service" class="com.dci.ComponentInfo.services.GetCompInforDAOimp"> -->
+<!-- 		<property name="dataSource" ref="myDataSource" /> -->
+<!-- 		<property name="compTypeAll" value="footnote,bridgehead,para,note,table,graphic,entity" /> -->
+<!-- 	</bean> -->
+
+						<!-- service with only jndi lookup -->
+<!-- 	<bean id="service" class="com.dci.ComponentInfo.services.GetCompInfoDaoTest"> -->
+<!-- 		<property name="dataSource" ref="wasDataSource" /> -->
+<!-- 		<property name="compTypeAll" value="footnote,bridgehead,para,note,table,graphic,entity" /> -->
+<!-- 	</bean> -->
+	
+						<!-- JNDI lookup working way -->
+<!-- 	<jee:jndi-lookup id="wasDataSource" jndi-name="java:comp/env/jdbc/docubuildrp" -->
+<!-- 		cache="true" resource-ref="true" lookup-on-startup="false" -->
+<!-- 		proxy-interface="javax.sql.DataSource"> -->
+<!-- 	</jee:jndi-lookup> -->
+						
+						<!-- JNDI lookup working way adapter -->
+<!-- 	<bean id="myDataSource" -->
+<!-- 		class="org.springframework.jdbc.datasource.UserCredentialsDataSourceAdapter"> -->
+<!-- 		<property name="targetDataSource" ref="wasDataSource" /> -->
+<!-- 		<property name="username" value="DCIAPPUSER" /> -->
+<!-- 		<property name="password" value="DCIUSER" /> -->
+<!-- 	</bean> -->
+
+						<!-- JNDI lookup people say working but not working here way -->
+<!-- 	<bean id="myTargetDataSource" class="org.springframework.jndi.JndiObjectFactoryBean"> -->
+<!-- 		<property name="jndiName" value="java:comp/env/jdbc/docubuildrp" />  -->
+<!-- 	</bean>  -->
+
+</beans>
